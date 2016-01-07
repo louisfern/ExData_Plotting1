@@ -26,11 +26,18 @@ validInd <- 2:nrow(data)
 dateTimes <- paste(as.Date(data[validInd,1],"%d/%m/%Y"), data[validInd,2])
 dateTimes <- strptime(dateTimes, "%Y-%m-%d %H:%M:%S")
 
-## Extract the relevant variable and prepare to plot it
-globalActivePower <- data[validInd, "Global_active_power"]
+## Extract the relevant variables and prepare to plot it
+Sub_metering_1 <- data[validInd, "Sub_metering_1"]
+Sub_metering_2 <- data[validInd, "Sub_metering_2"]
+Sub_metering_3 <- data[validInd, "Sub_metering_3"]
   
 ## Set up the new file and pipe the appropriate graphics to it
-png('plot1.png')
-hist(globalActivePower, xlab = "Global_active_power", 
-     main = "Global Active Power (kilowatts", col="red")
+png('plot3.png')
+plot(dateTimes, Sub_metering_1, "n", 
+     ylab = "Energy sub metering", xla = "")
+lines(dateTimes, Sub_metering_1)
+lines(dateTimes, Sub_metering_2, col = "red")
+lines(dateTimes, Sub_metering_3, col = "blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
+       lwd=1, col=c("black", "red", "blue"))
 dev.off()

@@ -30,7 +30,8 @@ dateTimes <- strptime(dateTimes, "%Y-%m-%d %H:%M:%S")
 globalActivePower <- data[validInd, "Global_active_power"]
   
 ## Set up the new file and pipe the appropriate graphics to it
-png('plot1.png')
-hist(globalActivePower, xlab = "Global_active_power", 
-     main = "Global Active Power (kilowatts", col="red")
+png('plot2.png')
+plot(dateTimes, globalActivePower, "n", 
+     ylab = "Global Active Power (kilowatts)", xla = "")
+lines(dateTimes, globalActivePower)
 dev.off()
